@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title> Contact - Arctic Finance </title>
-  <link rel="stylesheet" href="style.css" />  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Arctic Finance</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
 
 <nav>
   <ul>
@@ -19,59 +18,73 @@
 </nav>
 
 <main style="max-width: 600px; margin: 2rem auto;">
-  <h1> 📨 Me contacter</h1>
+  <h1>📨 Me contacter</h1>
+  <p>Une question ? Une suggestion ? Une envie de collaborer ? Laisse-moi un message via le formulaire ci-dessous :</p>
 
-  <p> Une question ? Une suggestion ? Une envie de collaborer ? Laisse moi un message via le formulaire ci-dessous : </p>
-
-  <form name="Contact" method="post" data-netlify="true" id="contact-form">
+  <form name="Contact" method="POST" data-netlify="true" id="contact-form">
     <input type="hidden" name="form-name" value="Contact" />
     <p style="display: none;">
-      <label> Ne pas remplir ce champ : <input name="bot-field" /></label>
+      <label>Ne pas remplir ce champ : <input name="bot-field" /></label>
     </p>
-  <div>
-    <label for="name">Nom :</label>
-    <input type="text" id="name" name="name" required />
-  </div>
 
-  <div>
-    <label for="message">Message :</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-  </div>
+    <div>
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="name" required />
+    </div>
 
-  <button type="submit">Envoyer</button>
-</form>
+    <div>
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
 
+    <button type="submit">Envoyer</button>
+  </form>
 </main>
 
 <footer>
-  <p> 2025 @ Arctic - Tous droits réservés</p>
+  <p>2025 @ Arctic - Tous droits réservés</p>
 </footer>
 
 
-<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); 
-    justify-content:center; align-items:center; z-index:1000;">
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
   <div style="background:white; padding:2rem; border-radius:8px; max-width: 400px; text-align:center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
     <h2>Merci pour votre message !</h2>
     <p>Vous allez être redirigé vers la page d'accueil...</p>
   </div>
 </div>
 
+
+<form name="Contact" netlify hidden>
+  <input type="text" name="name" />
+  <textarea name="message"></textarea>
+</form>
+
+
 <script>
-  const form = document.querySelector('form[name="Contact"]');
-  const modal = document.getElementById('modal');
+  const form = document.getElementById("contact-form");
+  const modal = document.getElementById("modal");
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); 
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    modal.style.display = 'flex';
+    
+    const formData = new FormData(form);
 
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 3000);
+    
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+      modal.style.display = "flex";
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 3000);
+    })
+    .catch((error) => alert("Erreur lors de l'envoi : " + error));
   });
 </script>
-
-
 
 </body>
 </html>
