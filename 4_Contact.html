@@ -47,28 +47,31 @@
   <p> 2025 @ Arctic - Tous droits réservés</p>
 </footer>
 
+
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); 
+    justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:white; padding:2rem; border-radius:8px; max-width: 400px; text-align:center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+    <h2>Merci pour votre message !</h2>
+    <p>Vous allez être redirigé vers la page d'accueil...</p>
+  </div>
+</div>
+
 <script>
-  const form = document.getElementById('contact-form');
+  const form = document.querySelector('form[name="Contact"]');
+  const modal = document.getElementById('modal');
 
   form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêche l'envoi normal
+    event.preventDefault(); 
 
-    const formData = new FormData(form);
+    modal.style.display = 'flex';
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
-    })
-    .then(() => {
-      alert('Merci pour votre message ! Vous allez être redirigé vers la page d\'accueil.');
-      window.location.href = 'index.html'; // redirection vers accueil
-    })
-    .catch(() => {
-      alert('Erreur lors de l\'envoi, veuillez réessayer.');
-    });
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 3000);
   });
 </script>
+
+
 
 </body>
 </html>
