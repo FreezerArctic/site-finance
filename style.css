@@ -232,8 +232,19 @@ form > div {
 }
 
 .page-intro {
-  font-size: 2rem;
+  max-width: 800px;
+  margin: auto;
   text-align: center;
   color: #004080;
-  margin: 2rem 0 1rem 0;
+}
+
+.page-intro h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-intro p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
 }
