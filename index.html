@@ -3,47 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mon Portfolio Finance</title>
+  <title>Arctic Finance - Bienvenue</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero {
+      background: linear-gradient(to right, #e0f2ff, #ffffff);
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #003366;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 1rem 0;
+    }
+    .cta-button {
+      background-color: #004080;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background-color: #f8fbff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .about, .cta {
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .cta a {
+      margin: 0.5rem;
+    }
+  </style>
 </head>
 
 <body>
-    <nav>
-  <ul>
-    <li><a href="index.html" class="active">Accueil</a></li>
-    <li><a href="blog.html"> Blog</a></li>
-    <li><a href="outils.html">Outils</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="outils.html">Outils</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-<section id="intro"> 
-  <h1>Bienvenue sur Arctic Finance Portfolio</h1>
+  <section class="hero">
+    <h1>Bienvenue sur Arctic Finance ❄️</h1>
+    <p>Guides, outils et conseils pour mieux comprendre et gérer tes finances.</p>
+    <a href="blog-guides.html" class="cta-button">Explorer les guides</a>
+  </section>
+
+  <section class="features">
+    <a href="blog-guides.html" style="text-decoration: none; color: inherit;">
+      <div class="card">
+        <h2>📘 Guides pédagogiques</h2>
+        <p>Comprendre les bases de l’investissement, du PEA ou de la bourse n’a jamais été aussi simple.</p>
+    </div>
+    </a>
+
+    <a href="outils.html" style="text-decoration: none; color: inherit;">
+      <div class="card">
+        <h2>🛠️ Outils pratiques</h2>
+        <p>Utilise nos calculateurs pour suivre ton budget, simuler des investissements ou t’organiser.</p>
+    </div>
+    </a>
+
+    <div class="card">
+      <h2>📩 Conseils concrets</h2>
+      <p>Des astuces et recommandations pour prendre de meilleures décisions financières au quotidien.</p>
+    </div>
+  </section>
+
+  <section id="why-arctic" style="max-width: 700px; margin: 3rem auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a1a1a;">
+  <h2 style="color: #004080; font-size: 1.8rem; margin-bottom: 1rem; text-align: center;">Pourquoi Arctic Finance ?</h2>
+  <p style="font-size: 1.1rem; line-height: 1.6;">
+    Avec l'inflation qui grimpe et le coût de la vie qui augmente, gérer son argent devient une véritable urgence. On entend parler de tout un tas de solutions, mais trouver des infos claires et fiables n'est pas toujours facile.<br><br>
+    Ici, pas de blabla compliqué, ni de promesses creuses : juste des guides pratiques, des conseils accessibles et des outils simples pour t'aider à mieux comprendre la finance au quotidien et à prendre des décisions éclairées.<br><br>
+    Arctic Finance, c'est ton espace pour enfin que tu te sentes à l'aise avec ton argent.
+  </p>
 </section>
- 
-<section id="projets">
-  <h2>Projets et Contenus</h2>
 
-  <div style="margin-bottom: 1.5rem;">
-    <h3>📘 Guide sur l'investissement en bourse</h3>
-    <p>Un guide destiné à toute personne souhaitant en apprendre plus sur l’investissement en bourse via un Plan d’Épargne en Actions (PEA).</p>
-  </div>
 
-  <div>
-    <h3>📊 Outils financiers</h3>
-    <p><strong>Tracker de finances personnelles :</strong> Un outil qui permet à chacun de suivre ses finances personnelles (dépenses, revenus, etc.) pour prendre en main la gestion de son budget et assurer sa stabilité financière sur le long terme.</p>
-  </div>
-</section>
-
-  <section id="about" style="padding: 2rem; max-width: 600px; margin: auto; text-align: center;">
-  <h2>À propos de moi</h2>
-  <p>Je suis passionné par l’économie et la finance.
-Sur ce site, je partage les connaissances que j’ai acquises pour t’aider, toi aussi, à te former.
-Tu y trouveras des guides, des conseils, ainsi que de nombreux outils pour progresser en finance et en investissement.  </p>
-</section>
+  <section class="cta">
+    <h2>Prêt à apprendre ?</h2>
+    <a href="guides.html" class="cta-button">Voir les guides</a>
+    <a href="outils.html" class="cta-button">Voir les outils</a>
+  </section>
 
   <footer>
-    <p>© 2025 Ton Nom - Tous droits réservés</p>
+    <p>© 2025 Arctic Finance - Tous droits réservés</p>
   </footer>
 </body>
 </html>
