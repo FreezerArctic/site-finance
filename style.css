@@ -201,3 +201,32 @@ form > div {
 .cta-button:hover {
   background-color: #003366;
 }
+
+.actus-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.actu {
+  background-color: #f5f5f5;
+  border-left: 4px solid #1a73e8;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.actu h2 {
+  margin-top: 0;
+}
+
+.actu .date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.actu a {
+  color: #1a73e8;
+  text-decoration: underline;
+}
