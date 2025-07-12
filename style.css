@@ -48,6 +48,14 @@ h2 {
   animation: fadeInUp 0.6s ease forwards;
   margin-bottom: 1.5rem;
 
+  .card-link {
+    text-decoration: none;
+    display: block;
+  }
+
+  .card-link .card {
+    cursor: pointer;
+  }
 
   display: flex;
   align-items: center;
