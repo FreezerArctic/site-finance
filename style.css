@@ -9,7 +9,7 @@ body {
   background-color: #f5f5f5;
   color: #222;
   line-height: 1.6;
-  padding: 20px;
+  padding: 0 20px; 
 }
 
 header {
@@ -24,166 +24,17 @@ header h1 {
 
 section {
   margin-bottom: 40px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 }
 
 h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
   color: #004080;
-}
-
-.card {
-  background-color: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-footer {
   text-align: center;
-  font-size: 0.9rem;
-  color: #777;
-  margin-top: 40px;
-}
-
-nav { 
-  background-color: #004080;
-  padding: 10px 0;
-
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li {
-  padding: 0;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: inline-block;
-}
-
-nav a:hover {
-  color: #ffcc00;
-  background-color: rgba(255, 204, 0, 0.2);
-}
-
-nav a.active {
-  border-bottom: 3px solid #ffcc00;
-  color: #ffcc00;
-}
-
-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-form label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-form button {
-  background-color: #004080;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #003366;
-}
-
-form > div {
-  margin-bottom: 1.5rem;
-}
-
-input[type="text"],
-textarea {
-  width: 100%;
-  padding: 8px 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family: inherit;
-  resize: vertical; /* permet de redimensionner verticalement le textarea */
-}
-
-button[type="submit"] {
-  background-color: #004080;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #003060;
-}
-
-button[type="submit"] {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.25 ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-.card {
-  background: #f9f9f9;
-  padding: 1.2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
 }
 
 .card {
@@ -192,17 +43,15 @@ button[type="submit"]:hover {
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  margin-bottom: 1.5rem;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 01.1);
-}
-
-.card {
-  opacity: 0 ;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.11);
 }
 
 .card:nth-child(1) { animation-delay: 0.1s; }
@@ -214,6 +63,103 @@ button[type="submit"]:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 40px;
+}
+
+nav {
+  background-color: #004080;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-bottom 0.3s;
+  display: inline-block;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #a3d2ff;
+  border-bottom: 2px solid #a3d2ff;
+  outline: none;
+}
+
+nav ul li a.active {
+  border-bottom: 3px solid #fff;
+  padding-bottom: 4px;
+  color: #fff;
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+form button,
+button[type="submit"] {
+  background-color: #004080;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover,
+button[type="submit"]:hover {
+  background-color: #003366;
+  transform: scale(1.05);
+}
+
+form > div {
+  margin-bottom: 1.5rem;
 }
 
 #why-arctic {
@@ -237,41 +183,21 @@ button[type="submit"]:hover {
 #why-arctic p {
   font-size: 1.1rem;
   line-height: 1.6;
+  text-align: center;
 }
 
-nnav {
+.cta-button {
   background-color: #004080;
-  padding: 0.5rem 1rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 3rem; 
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-}
-
-nav ul li a {
   color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
   font-weight: 600;
-  padding: 0.5rem 0;
-  font-size: 1.1rem; 
-  transition: color 0.3s, border-bottom 0.3s;
-  border-bottom: 2px solid transparent;
+  transition: background-color 0.3s ease;
 }
 
-nav ul li a:hover,
-nav ul li a:focus {
-  color: #a3d2ff;
-  border-bottom: 2px solid #a3d2ff;
-  outline: none;
-}
-
-nav ul li a.active {
-  border-bottom: 3px solid #fff; 
-  padding-bottom: 4px;
-  color: #fff;
+.cta-button:hover {
+  background-color: #003366;
 }
