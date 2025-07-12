@@ -230,3 +230,10 @@ form > div {
   color: #1a73e8;
   text-decoration: underline;
 }
+
+.page-intro {
+  font-size: 2rem;
+  text-align: center;
+  color: #004080;
+  margin: 2rem 0 1rem 0;
+}
