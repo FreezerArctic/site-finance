@@ -1,404 +1,794 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Variables pour les couleurs */
+:root {
+    --arctic-blue-dark: #004080; /* Bleu foncé pour les titres, accents */
+    --arctic-blue-medium: #007bff; /* Bleu moyen pour les liens, boutons CTA */
+    --arctic-blue-light: #e0f2f7; /* Bleu très clair pour les fonds subtils */
+    --white: #ffffff;
+    --light-gray: #f8f9fa; /* Arrière-plan général */
+    --medium-gray: #dee2e6; /* Bordures, séparateurs */
+    --dark-gray: #343a40; /* Texte principal */
+    --text-color: #495057; /* Couleur de texte par défaut */
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Ombre légère pour les cartes */
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
 }
 
+/* Styles généraux */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fa;
-  color: #1a1a1a;
-  line-height: 1.6;
-  font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
+main {
+    flex-grow: 1; /* Permet au contenu principal de prendre l'espace disponible */
+    max-width: 1100px; /* Largeur maximale pour le contenu principal */
+    margin: 2rem auto; /* Centrage et espace vertical */
+    padding: 0 1.5rem; /* Padding horizontal pour les petits écrans */
 }
 
+@media (min-width: 768px) {
+    main {
+        padding: 0 2rem; /* Plus de padding sur les grands écrans */
+    }
+}
+
+
+a {
+    color: var(--arctic-blue-medium);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--arctic-blue-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--arctic-blue-dark);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* --- Header et Navigation --- */
 .main-header {
-  background: linear-gradient(to right, #e0f2ff, #f8faff);
-  padding: 1rem 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 80px;
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    flex-direction: column; /* Par défaut, les éléments sont en colonne */
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem; /* Espace entre le logo et la nav */
+}
+
+@media (min-width: 768px) {
+    .main-header {
+        flex-direction: row; /* En ligne sur les écrans plus larges */
+    }
 }
 
 .header-content {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Permet au logo et titre de passer à la ligne si l'espace est limité */
+    justify-content: center; /* Centrer sur mobile */
+    text-align: center; /* Centrer le texte si le logo est sur une autre ligne */
 }
 
+@media (min-width: 768px) {
+    .header-content {
+        justify-content: flex-start; /* Aligner à gauche sur desktop */
+        text-align: left;
+    }
+}
+
+
 .logo-container {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
 }
 
 .site-logo {
-  height: 60px;
-  width: auto;
-  display: block;
+    height: 40px; /* Taille du logo */
+    width: auto;
+    border-radius: 50%; /* Si tu veux un effet rond */
 }
 
 .site-title-text {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #002244;
-  font-family: 'Segoe UI', sans-serif;
-  letter-spacing: 0.5px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--arctic-blue-dark);
+    white-space: nowrap; /* Empêche le titre de se couper */
 }
 
-.main-nav {
-  background-color: transparent;
-  padding: 0.5rem 0;
-  width: auto;
-  box-shadow: none;
+.main-nav ul,
+nav ul { /* Applique aussi au nav simple sur les autres pages */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+    justify-content: center; /* Centrer les liens */
+    gap: 1rem 1.5rem; /* Espacement entre les liens */
 }
 
-.main-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav ul li {
-  margin: 0 15px;
-}
-
-.main-nav a {
-  color: #002244;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  padding: 0.5rem 0;
+.main-nav a,
+nav a {
+    display: block; /* Rend la zone cliquable plus grande */
+    padding: 0.5rem 0.8rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    border-radius: var(--border-radius);
 }
 
 .main-nav a:hover,
-.main-nav a.active {
-  color: #0074D9;
+nav a:hover,
+.main-nav a.active,
+nav a.active {
+    background-color: var(--arctic-blue-light);
+    color: var(--arctic-blue-dark);
 }
 
-h1, h2, h3 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-align: center;
+/* --- Section Hero (Accueil) --- */
+.hero {
+    background-color: var(--arctic-blue-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 4rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-top: 1rem;
+.hero h1 {
+    color: var(--white);
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 2rem;
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-h3 {
-  font-size: 1.5rem;
+.cta-button {
+    display: inline-block;
+    background-color: var(--arctic-blue-medium);
+    color: var(--white);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px; /* Bouton arrondi */
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    border: none;
+    cursor: pointer;
 }
 
-section {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+.cta-button:hover {
+    background-color: var(--arctic-blue-dark);
+    transform: translateY(-2px); /* Léger effet de soulèvement */
 }
 
-section p {
-  margin-bottom: 1rem;
+/* --- Sections Features et Cards --- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colonnes flexibles */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.button {
-  display: inline-block;
-  background-color: #0074D9;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #005fa3;
-}
-
-/* Ces styles .card et .card:hover étaient ici et sont maintenant fusionnés avec les nouveaux */
-/* .card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  margin: 1rem 0;
-  transition: transform 0.2s ease;
+.card {
+    background-color: var(--white);
+    padding: 1.8rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px; /* Hauteur minimale pour l'homogénéité */
 }
 
 .card:hover {
-  transform: translateY(-4px);
-} */
-
-
-footer {
-  background-color: #001f3f;
-  color: #ffffff;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  margin-top: 2rem;
-  font-size: 0.9rem;
+    transform: translateY(-5px); /* Léger effet de soulèvement au survol */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-footer a {
-  color: #66b2ff;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  .main-nav ul {
-    flex-direction: column;
+.card h2 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    display: flex;
     align-items: center;
-  }
-
-  .main-nav ul li {
-    margin: 10px 0;
-  }
-
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem 10px;
-  }
-  .logo-container {
-    margin-bottom: 0.5rem;
-  }
-
-  .container {
-    padding: 10px;
-  }
-
-  section {
-    padding: 1.5rem 1rem;
-  }
+    gap: 0.7rem;
+    color: var(--arctic-blue-dark);
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.75rem;
-  }
+.card p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
 
-  h2 {
-    font-size: 1.5rem;
-  }
+.card-icon {
+    width: 28px; /* Taille des icônes SVG */
+    height: 28px;
+    fill: var(--arctic-blue-medium); /* Couleur de l'icône */
+}
 
-  .button {
-    padding: 0.6rem 1rem;
+/* Pour le SVG spécifique sur la page d'accueil */
+.features .card svg path {
+    fill: var(--arctic-blue-medium);
+}
+
+
+/* --- Section "Pourquoi Arctic Finance" --- */
+#why-arctic {
+    background-color: var(--white);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--dark-gray); /* Couleur de texte plus foncée pour le contraste */
+    text-align: center;
+}
+
+#why-arctic h2 {
+    color: var(--arctic-blue-dark);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+#why-arctic p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* --- Section CTA (Apprendre / Explorer) --- */
+.cta {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--arctic-blue-light);
+    border-radius: var(--border-radius);
+    margin-top: 3rem;
+    box-shadow: var(--box-shadow);
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--arctic-blue-dark);
+}
+
+.cta .cta-button {
+    margin: 0.5rem;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--arctic-blue-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: auto; /* Pousse le footer en bas de page */
     font-size: 0.9rem;
-  }
+}
 
-  .card {
-    padding: 1rem;
-  }
+/* --- Styles spécifiques aux pages --- */
 
-  .site-title-text {
-    font-size: 1.4rem;
-  }
-  .site-logo {
-    height: 50px;
-  }
+/* Page Blog */
+.blog-section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.blog-section .intro {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
 }
 
 .blog-links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
-.blog-links a {
-  text-decoration: none;
-  color: #0074D9;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
+.blog-links .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--arctic-blue-dark);
+    height: 120px; /* Hauteur fixe pour les cartes de catégorie */
+    transition: background-color var(--transition-speed) ease;
 }
 
-.blog-links a:hover {
-  color: #005fa3;
+.blog-links .card:hover {
+    background-color: var(--arctic-blue-light);
 }
 
-.intro {
-  text-align: center;
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: #444;
+.blog-links .card-link {
+    text-decoration: none;
+    color: inherit;
 }
 
-.outil {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #f4f4f4;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+.blog-links .card.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
 }
 
-.outil h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+.blog-links .card.disabled:hover {
+    transform: none;
+    box-shadow: var(--box-shadow);
+    background-color: var(--medium-gray); /* Pas de changement de couleur au survol */
 }
 
-.outil form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Page Outils */
+.outil-interets {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 600px;
+    margin: 2rem auto;
 }
 
-.outil input,
-.outil select,
-.outil button {
-  padding: 0.6rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.outil-interets h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
 }
 
-.outil button {
-  background-color: #004b87;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.outil-interets form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.outil button:hover {
-  background-color: #0060ae;
+.outil-interets label {
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 0.2rem;
+    display: block; /* Assure que le label prend sa propre ligne */
+}
+
+.outil-interets input[type="number"],
+.outil-interets select {
+    width: calc(100% - 20px); /* Ajuste pour le padding */
+    padding: 0.8rem 10px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Inclut padding et border dans la largeur */
+}
+
+.outil-interets button[type="submit"] {
+    background-color: var(--arctic-blue-medium);
+    color: var(--white);
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    margin-top: 1rem;
+}
+
+.outil-interets button[type="submit"]:hover {
+    background-color: var(--arctic-blue-dark);
 }
 
 .resultat {
-  margin-top: 2rem;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.2rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--arctic-blue-light);
+    border: 1px solid var(--arctic-blue-medium);
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--arctic-blue-dark);
 }
 
-.card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
+/* Page Contact */
+#contact-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 2rem auto;
 }
 
-.card-link .card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+#contact-form h1,
+#contact-form p {
+    text-align: center;
 }
 
-.card-link:hover .card {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  background-color: #f8f9fa;
-  cursor: pointer;
+#contact-form div {
+    margin-bottom: 0.5rem;
 }
 
-.card-link .card p {
-  text-decoration: none;
-  color: inherit;
+#contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-gray);
 }
 
-.hero {
-  background: linear-gradient(to right, #e0f2ff, #ffffff);
-  text-align: center;
-  padding: 4rem 1rem;
-}
-.hero h1 {
-  font-size: 2.5rem;
-  color: #003366;
-}
-.hero p {
-  font-size: 1.2rem;
-  color: #333;
-  margin: 1rem 0;
-}
-.cta-button {
-  background-color: #004080;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 1rem;
-  transition: background-color 0.3s ease;
-}
-.cta-button:hover {
-  background-color: #005a9c;
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: calc(100% - 20px);
+    padding: 0.8rem 10px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
+#contact-form textarea {
+    resize: vertical; /* Permet le redimensionnement vertical */
+    min-height: 100px;
 }
 
-/* C'est ce bloc qui contient les styles corrigés pour les cartes et les icônes */
-.card {
-  background-color: #f8fbff;
-  border: 1px solid #e0f2ff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+#contact-form button[type="submit"] {
+    background-color: var(--arctic-blue-medium);
+    color: var(--white);
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    align-self: flex-start; /* Aligner le bouton à gauche */
+    margin-top: 1rem;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+#contact-form button[type="submit"]:hover {
+    background-color: var(--arctic-blue-dark);
 }
 
-.card h2 svg.card-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  vertical-align: middle;
-  margin-right: 0.5em;
-  fill: #004080;
-  flex-shrink: 0;
+#contact-info {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--arctic-blue-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
-.features .card h2 {
-  color: #004080;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#contact-info h2 {
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    color: var(--arctic-blue-dark);
 }
 
-.features .card p {
-  font-size: 1rem;
-  color: #555;
-  text-align: center;
+#contact-info p {
+    font-size: 1.1rem;
+    margin: 0;
 }
 
-.about, .cta {
-  text-align: center;
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none; /* Masqué par défaut */
+    backdrop-filter: blur(5px); /* Effet de flou sur l'arrière-plan */
 }
-.cta a {
-  margin: 0.5rem;
+
+#modal > div {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    animation: fadeInScale 0.3s ease-out forwards; /* Animation à l'apparition */
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#modal h2 {
+    color: var(--arctic-blue-dark);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+#modal p {
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+}
+
+
+/* Page Guides et Articles (Général) */
+.page-intro {
+    background-color: var(--arctic-blue-light);
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.page-intro h2 {
+    font-size: 2rem;
+    color: var(--arctic-blue-dark);
+    margin-bottom: 0.8rem;
+}
+
+.page-intro p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Listes d'articles/guides */
+.actus-liste,
+.guides-list { /* J'ai ajouté .guides-list pour la cohérence future */
+    display: grid;
+    gap: 1.5rem;
+}
+
+.actus-liste .preview,
+.guides-list .preview,
+.guides-list .card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    cursor: pointer;
+}
+
+.actus-liste .preview:hover,
+.guides-list .preview:hover,
+.guides-list .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.actus-liste .preview h2,
+.guides-list .preview h2,
+.guides-list .card h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: var(--arctic-blue-dark);
+}
+
+.actus-liste .preview p,
+.guides-list .preview p,
+.guides-list .card p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.actus-liste .preview .btn {
+    display: inline-block;
+    background-color: var(--arctic-blue-medium);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.actus-liste .preview .btn:hover {
+    background-color: var(--arctic-blue-dark);
+}
+
+/* Styles pour les pages de contenu (ex: guide PEA) */
+.article-content { /* Utilise cette classe pour le main des pages d'articles/guides */
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.article-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.article-content h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--arctic-blue-light);
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.article-content ul li::marker {
+    color: var(--arctic-blue-medium);
+}
+
+.article-content ol li::marker {
+    color: var(--arctic-blue-medium);
+    font-weight: bold;
+}
+
+.article-content .return-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Réinitialisation des styles inline pour laisser le CSS prendre le dessus */
+/* C'est important car les styles inline ont une priorité plus élevée */
+/* Ceci s'assure que même si des styles inline subsistaient, le CSS prendrait le dessus.
+   Cependant, l'objectif est de les retirer complètement du HTML. */
+#why-arctic,
+.contact-form-container,
+.guides-container,
+.outils-container {
+    max-width: 900px;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--box-shadow) !important;
+    background-color: var(--white) !important;
+    color: var(--text-color) !important;
+    font-family: inherit !important;
+}
+
+/* Spécifique pour le main des pages qui avaient des styles inline */
+body > nav + main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Adapter les styles h1 des pages de contenu */
+body > nav + main h1 {
+    font-size: 2.2rem !important;
+    color: var(--arctic-blue-dark) !important;
+    margin-bottom: 1.5rem !important;
+    text-align: left !important;
+}
+
+/* Adapter les styles de grille des pages de contenu */
+body > nav + main > div {
+    display: grid !important;
+    gap: 1.5rem !important;
+}
+
+/* Enlève les styles inline des ancres dans les cartes */
+.card a {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: block !important;
+}
+
+/* Correction pour le footer des pages de contenu */
+footer p {
+    font-size: 0.9rem;
+    color: var(--white);
+    margin: 0;
+}
+
+/* Styles Responsives */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .features {
+        grid-template-columns: 1fr; /* Une colonne sur mobile */
+    }
+    main {
+        padding: 0 1rem;
+    }
+    #why-arctic,
+    .outil-interets,
+    #contact-form,
+    #contact-info,
+    .article-content {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem auto;
+    }
+    .cta h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title-text {
+        font-size: 1.5rem;
+    }
+    .site-logo {
+        height: 35px;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+    .card h2 {
+        font-size: 1.2rem;
+    }
+    .card p {
+        font-size: 0.9rem;
+    }
+    .outil-interets input,
+    .outil-interets select,
+    .outil-interets button {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+    #contact-form input,
+    #contact-form textarea,
+    #contact-form button {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
 }

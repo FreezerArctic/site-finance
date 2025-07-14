@@ -8,38 +8,43 @@
 </head>
 <body>
 
-<nav aria-label="Navigation principale">
-  <ul style="list-style: none; display: flex; gap: 1.5rem; padding-left: 0;">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="outils.html">Outils</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<header class="main-header">
+    <div class="header-content">
+        <div class="logo-container">
+            <img src="Logo Arctic Finance.png" alt="Logo Arctic Finance" class="site-logo" />
+            <span class="site-title-text">Arctic Finance</span>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li> <li><a href="outils.html">Outils</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-<main style="max-width: 900px; margin: 2rem auto;">
-  <h1 style="font-size: 2.2rem; color: #004080; margin-bottom: 1.5rem;">📘 Nos guides pédagogiques</h1>
+<main>
+  <h1>📘 Nos guides pédagogiques</h1>
 
-  <div style="display: grid; gap: 1.5rem;">
+  <div class="guides-list">
 
     <section class="card">
-      <a href="#" style="text-decoration: none; color: inherit; display: block;">
+      <a href="#" class="card-link">
       <h2> 📊 Premiers pas en bourse</h2>
       <p>Les bases de l’investissement en bourse : risques, diversification, horizon de placement, et comment éviter les erreurs courantes.</p>
       </a>
     </section>
-    
-    
-    <section class="card" style="cursor: pointer;">
-      <a href="guides/pea.html" style="text-decoration: none; color: inherit;">
+
+    <section class="card">
+      <a href="guides/pea.html" class="card-link">
         <h2> 💸 Guide PEA (Plan d'Épargne en Actions)</h2>
         <p> Comprendre les avantages fiscaux du PEA, comment l'ouvrir, quels ETFs ou actions y mettre, et comment suivre ses performances. </p>
-      </section>
-    </a>
-      
-  
+      </a>
+    </section>
+
     <section class="card">
-      <a href="#" style="text-decoration: none; color: inherit; display: block;">
+      <a href="#" class="card-link">
       <h2> 🧠 Les biais psychologiques en finance</h2>
       <p>Pourquoi on prend parfois de mauvaises décisions avec notre argent ? Découvre les biais cognitifs qui influencent tes choix financiers.</p>
       </a>
@@ -48,8 +53,8 @@
   </div>
 </main>
 
-<footer style="text-align:center; margin-top: 3rem; padding: 1rem 0; border-top: 1px solid #ccc;">
-  <p>© 2025 Arctic - Tous droits réservés</p>
+<footer>
+  <p>© 2025 Arctic Finance - Tous droits réservés</p>
 </footer>
 
 </body>

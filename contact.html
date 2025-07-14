@@ -8,16 +8,24 @@
 </head>
 <body>
 
-<nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="outils.html">Outils</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
-  </ul>
-</nav>
+<header class="main-header">
+    <div class="header-content">
+        <div class="logo-container">
+            <img src="Logo Arctic Finance.png" alt="Logo Arctic Finance" class="site-logo" />
+            <span class="site-title-text">Arctic Finance</span>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="outils.html">Outils</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-<main style="max-width: 600px; margin: 2rem auto;">
+<main>
   <h1>📨 Me contacter</h1>
   <p>Une question ? Une suggestion ? Une envie de collaborer ? Laisse-moi un message via le formulaire ci-dessous :</p>
 
@@ -45,21 +53,19 @@
   <button type="submit">Envoyer</button>
 </form>
 
-
-  <section id="contact-info" style="margin-top: 2rem;">
-    <h2> Mes coordonnées</h2>
+  <section id="contact-info">
+    <h2>Mes coordonnées</h2>
     <p> Email : <a href="mailto:arcticequity@gmail.com">arcticequity@gmail.com</a>
     </p>
   </section>
 </main>
 
 <footer>
-  <p>2025 @ Arctic - Tous droits réservés</p>
+  <p>© 2025 Arctic Finance - Tous droits réservés</p>
 </footer>
 
-
-<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
-  <div style="background:white; padding:2rem; border-radius:8px; max-width: 400px; text-align:center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+<div id="modal">
+  <div>
     <h2>Merci pour votre message !</h2>
     <p>Vous allez être redirigé vers la page d'accueil...</p>
   </div>
@@ -72,20 +78,18 @@
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    
     const formData = new FormData(form);
 
-    
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString()
     })
     .then(() => {
-      modal.style.display = "flex";
+      modal.style.display = "flex"; // Affiche la modale
       setTimeout(() => {
         window.location.href = "index.html";
-      }, 3000);
+      }, 3000); // Redirige après 3 secondes
     })
     .catch((error) => alert("Erreur lors de l'envoi : " + error));
   });
