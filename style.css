@@ -12,24 +12,23 @@ body {
   font-size: 16px;
 }
 
-.container { 
+.container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
-
 .main-header {
   background: linear-gradient(to right, #e0f2ff, #f8faff);
-  padding: 1rem 20px; 
+  padding: 1rem 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  min-height: 80px; 
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
 }
 
-.header-content { 
+.header-content {
   display: flex;
   align-items: center;
 }
@@ -37,28 +36,27 @@ body {
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.8rem; 
+  gap: 0.8rem;
 }
 
-.site-logo { 
-  height: 60px; 
-  width: auto; 
-  display: block; 
+.site-logo {
+  height: 60px;
+  width: auto;
+  display: block;
 }
 
-.site-title-text { 
-  font-size: 1.8rem; 
+.site-title-text {
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #002244; 
-  font-family: 'Segoe UI', sans-serif; 
-  letter-spacing: 0.5px; 
+  color: #002244;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.5px;
 }
-
 
 .main-nav {
   background-color: transparent;
   padding: 0.5rem 0;
-  width: auto; 
+  width: auto;
   box-shadow: none;
 }
 
@@ -76,7 +74,7 @@ body {
 }
 
 .main-nav a {
-  color: #002244; 
+  color: #002244;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
@@ -85,7 +83,7 @@ body {
 
 .main-nav a:hover,
 .main-nav a.active {
-  color: #0074D9; 
+  color: #0074D9;
 }
 
 h1, h2, h3 {
@@ -107,7 +105,6 @@ h3 {
   font-size: 1.5rem;
 }
 
-
 section {
   background-color: #ffffff;
   border-radius: 12px;
@@ -120,8 +117,7 @@ section p {
   margin-bottom: 1rem;
 }
 
-
-.button { 
+.button {
   display: inline-block;
   background-color: #0074D9;
   color: white;
@@ -136,8 +132,8 @@ section p {
   background-color: #005fa3;
 }
 
-
-.card {
+/* Ces styles .card et .card:hover étaient ici et sont maintenant fusionnés avec les nouveaux */
+/* .card {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -148,7 +144,7 @@ section p {
 
 .card:hover {
   transform: translateY(-4px);
-}
+} */
 
 
 footer {
@@ -169,29 +165,27 @@ footer a:hover {
   text-decoration: underline;
 }
 
-
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
   }
 
-  
   .main-nav ul {
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
   }
 
   .main-nav ul li {
     margin: 10px 0;
   }
 
-  .header-content { 
-    flex-direction: column; 
+  .header-content {
+    flex-direction: column;
     text-align: center;
     padding: 1rem 10px;
   }
   .logo-container {
-    margin-bottom: 0.5rem; 
+    margin-bottom: 0.5rem;
   }
 
   .container {
@@ -222,10 +216,10 @@ footer a:hover {
   }
 
   .site-title-text {
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
   }
   .site-logo {
-    height: 50px; 
+    height: 50px;
   }
 }
 
@@ -325,9 +319,8 @@ footer a:hover {
   color: inherit;
 }
 
-
 .hero {
-  background: linear-gradient(to right, #e0f2ff, #ffffff); 
+  background: linear-gradient(to right, #e0f2ff, #ffffff);
   text-align: center;
   padding: 4rem 1rem;
 }
@@ -340,7 +333,7 @@ footer a:hover {
   color: #333;
   margin: 1rem 0;
 }
-.cta-button { 
+.cta-button {
   background-color: #004080;
   color: white;
   padding: 0.75rem 1.5rem;
@@ -348,10 +341,10 @@ footer a:hover {
   text-decoration: none;
   display: inline-block;
   margin-top: 1rem;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 .cta-button:hover {
-    background-color: #005a9c; 
+  background-color: #005a9c;
 }
 
 .features {
@@ -362,15 +355,42 @@ footer a:hover {
   max-width: 1000px;
   margin: auto;
 }
-.card { 
-  background-color: #f8fbff; 
-  padding: 1.5rem;
+
+/* C'est ce bloc qui contient les styles corrigés pour les cartes et les icônes */
+.card {
+  background-color: #f8fbff;
+  border: 1px solid #e0f2ff;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card h2 svg.card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  fill: #004080;
+  flex-shrink: 0;
+}
+
+.features .card h2 {
+  color: #004080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features .card p {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
 }
 
 .about, .cta {
