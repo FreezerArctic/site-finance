@@ -792,3 +792,16 @@ footer p {
         font-size: 0.9rem;
     }
 }
+
+/* --- Nouveaux styles pour le logo cliquable --- */
+.logo-link {
+    text-decoration: none; 
+    color: inherit; 
+    display: flex; 
+    align-items: center; 
+    padding: 0.5rem 0; 
+}
+
+.logo-link:hover .site-title-text {
+    color: var(--arctic-blue-medium); 
+}
