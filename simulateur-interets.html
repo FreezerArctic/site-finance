@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulateur d'intérêts composés</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<nav aria-label="Navigation principale">
+  <ul style="list-style: none; display: flex; gap: 1.5rem; padding-left: 0;">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="outils.html">Outils</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+  <section class="outil outil-interets">
+    <h2>📈 Simulateur d'intérêts composés</h2>
+
+    <form id="simulateur-interets">
+      <label for="capital">💰 Capital initial (€) :</label>
+      <input type="number" id="capital" required />
+
+      <label for="taux">📊 Taux d'intérêt annuel (%) :</label>
+      <input type="number" id="taux" step="0.01" required />
+
+      <label for="duree">⏳ Durée (en années) :</label>
+      <input type="number" id="duree" required />
+
+      <label for="frequence">🔁 Fréquence de capitalisation :</label>
+      <select id="frequence">
+        <option value="1">Annuelle</option>
+        <option value="2">Semestrielle</option>
+        <option value="4">Trimestrielle</option>
+        <option value="12">Mensuelle</option>
+      </select>
+
+      <button type="submit">Calculer</button>
+    </form>
+
+    <div id="resultat-interets" class="resultat"></div>
+  </section>
+
+  <script>
+    document.getElementById('simulateur-interets').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const capital = parseFloat(document.getElementById('capital').value);
+      const taux = parseFloat(document.getElementById('taux').value) / 100;
+      const duree = parseFloat(document.getElementById('duree').value);
+      const frequence = parseInt(document.getElementById('frequence').value);
+
+      const valeurFinale = capital * Math.pow((1 + taux / frequence), frequence * duree);
+
+      document.getElementById('resultat-interets').textContent =
+        `💸 Valeur future estimée : ${valeurFinale.toFixed(2)} €`;
+    });
+  </script>
+
+</body>
+</html>
