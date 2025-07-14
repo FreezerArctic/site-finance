@@ -101,7 +101,7 @@ p {
 }
 
 .site-logo {
-    height: 40px; /* Taille du logo */
+    height: 115px; /* Taille du logo */
     width: auto;
     border-radius: 50%; /* Si tu veux un effet rond */
 }
