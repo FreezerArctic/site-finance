@@ -11,6 +11,25 @@
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Ombre légère pour les cartes */
     --border-radius: 8px;
     --transition-speed: 0.3s;
+
+    /* Nouvelles variables (ou renommage pour clarté) mappées à vos couleurs existantes */
+    --primary-color: var(--arctic-blue-dark);
+    --primary-color-light: var(--arctic-blue-light);
+    --heading-color: var(--arctic-blue-dark);
+    --text-color-light: var(--text-color); /* Pour les textes secondaires */
+    --card-background: var(--white);
+    --border-color: #e0e0e0; /* Une couleur de bordure plus douce */
+    --accent-color: var(--arctic-blue-medium); /* Pour les liens ou éléments secondaires */
+
+    /* Variables pour le mode sombre (si vous les implémentez un jour) - GARDÉES ICI POUR INFO, MAIS INACTIVES SANS CODE JS OU MEDIA QUERY */
+    --dark-background-color: #1a1a1a;
+    --dark-text-color: #e0e0e0;
+    --dark-heading-color: #e0f2f7;
+    --dark-card-background: #2c2c2c;
+    --dark-border-color: #444;
+    --dark-primary-color: #007bff;
+    --dark-primary-color-light: #004080;
+    --dark-accent-color: #90caf9;
 }
 
 /* Styles généraux */
@@ -38,7 +57,6 @@ main {
         padding: 0 2rem; /* Plus de padding sur les grands écrans */
     }
 }
-
 
 a {
     color: var(--arctic-blue-medium);
@@ -92,7 +110,6 @@ p {
         text-align: left;
     }
 }
-
 
 .logo-container {
     display: flex;
@@ -185,7 +202,7 @@ nav a.active {
     transform: translateY(-2px); /* Léger effet de soulèvement */
 }
 
-/* --- Sections Features et Cards --- */
+/* --- Sections Features et Cards sur la page d'accueil --- */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colonnes flexibles */
@@ -193,7 +210,7 @@ nav a.active {
     margin-bottom: 2rem;
 }
 
-.card {
+.card { /* Ceci est pour les cartes GÉNÉRALES, comme sur la page d'accueil */
     background-color: var(--white);
     padding: 1.8rem;
     border-radius: var(--border-radius);
@@ -224,13 +241,13 @@ nav a.active {
     color: var(--text-color);
 }
 
+/* Pour les icônes SVG spécifiques sur la page d'accueil (ne s'applique pas aux .blog-post-card) */
 .card-icon {
     width: 28px; /* Taille des icônes SVG */
     height: 28px;
     fill: var(--arctic-blue-medium); /* Couleur de l'icône */
 }
 
-/* Pour le SVG spécifique sur la page d'accueil */
 .features .card svg path {
     fill: var(--arctic-blue-medium);
 }
@@ -288,64 +305,155 @@ footer {
     margin-top: auto; /* Pousse le footer en bas de page */
     font-size: 0.9rem;
 }
+footer p { /* Correction pour éviter le padding du main sur le footer */
+    font-size: 0.9rem;
+    color: var(--white);
+    margin: 0;
+}
+
 
 /* --- Styles spécifiques aux pages --- */
 
-/* Page Blog */
-.blog-section h2 {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 1rem;
+/* Page Blog (Vue d'ensemble et liste des derniers articles) */
+/* Contenu principal de la page blog */
+.blog-main-content {
+    padding: 20px;
+    max-width: 1200px; /* Max width for content */
+    margin: 20px auto; /* Center the content */
+    display: flex; /* Use flexbox for overall layout */
+    flex-direction: column; /* Stack sections vertically */
+    gap: 40px; /* Space between sections */
 }
 
-.blog-section .intro {
-    font-size: 1.1rem;
+/* Introduction section (h1, p.intro) sur la page blog */
+.blog-main-content section:first-of-type {
     text-align: center;
-    margin-bottom: 2rem;
-    color: var(--text-color);
 }
 
-.blog-links {
+.blog-main-content h1 {
+    font-size: 2.5em; /* Utilisez la taille pour le h1 principal de la page */
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.blog-main-content .intro {
+    font-size: 1.1em; /* Utilisation de la taille existante */
+    color: var(--text-color); /* Utilisation de la couleur de texte par défaut */
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grille des cartes (Catégories et Derniers Articles utilisent la même structure) */
+.articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Crée une grille responsive */
+    gap: 30px; /* Espacement entre les cartes */
+    margin-top: 40px; /* Espace au-dessus de la grille */
+    margin-bottom: 60px; /* Espace après la grille (si elle est suivie d'une autre section) */
+    justify-content: center; /* Centre les éléments de la grille si l'espace le permet */
 }
 
-.blog-links .card {
+/* Styles pour les "Blog Post Cards" (utilisées pour les catégories et les articles) */
+.blog-post-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius); /* Bords légèrement arrondis */
+    overflow: hidden; /* Assure que l'image et le contenu restent dans les bords arrondis */
+    box-shadow: var(--box-shadow); /* Ombre douce pour un effet de profondeur */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Transitions douces au survol */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--arctic-blue-dark);
-    height: 120px; /* Hauteur fixe pour les cartes de catégorie */
-    transition: background-color var(--transition-speed) ease;
+    flex-direction: column; /* Organise le contenu verticalement */
+    height: 100%; /* Important pour que toutes les cartes aient la même hauteur dans la grille */
 }
 
-.blog-links .card:hover {
-    background-color: var(--arctic-blue-light);
+.blog-post-card:hover {
+    transform: translateY(-8px); /* La carte monte légèrement au survol */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
 }
 
-.blog-links .card-link {
+/* Lien englobant toute la carte pour la rendre cliquable */
+.blog-post-card .card-link {
     text-decoration: none;
-    color: inherit;
+    color: inherit; /* Le texte hérite de la couleur de base */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.blog-links .card.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background-color: var(--medium-gray);
-    color: var(--dark-gray);
+.blog-post-card .post-thumbnail {
+    width: 100%;
+    height: 200px; /* Hauteur fixe pour toutes les images de carte */
+    object-fit: cover; /* L'image couvre la zone sans déformation */
+    border-bottom: 1px solid var(--border-color); /* Petite séparation visuelle */
 }
 
-.blog-links .card.disabled:hover {
-    transform: none;
-    box-shadow: var(--box-shadow);
-    background-color: var(--medium-gray); /* Pas de changement de couleur au survol */
+.blog-post-card .post-content {
+    padding: 20px;
+    flex-grow: 1; /* Permet au contenu de prendre l'espace restant dans la carte */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Page Outils */
+.blog-post-card h2, /* Pour les titres des cartes de catégorie (Guides, Actualités) */
+.blog-post-card h3 { /* Pour les titres des cartes d'articles récents */
+    font-size: 1.4em; /* Taille du titre de la carte */
+    color: var(--heading-color); /* Couleur foncée pour le titre */
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.blog-post-card p {
+    font-size: 0.95em;
+    color: var(--text-color-light); /* Couleur de texte plus douce */
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Pour que les paragraphes prennent la place nécessaire */
+}
+
+.blog-post-card .post-category {
+    display: inline-block;
+    background-color: var(--primary-color-light); /* Couleur de fond pour la pastille de catégorie */
+    color: var(--primary-color); /* Couleur du texte pour la pastille */
+    padding: 6px 12px;
+    border-radius: 20px; /* Bords très arrondis pour la pastille */
+    font-size: 0.75em;
+    font-weight: 600; /* Plus gras */
+    text-transform: uppercase; /* Tout en majuscules */
+    letter-spacing: 0.5px;
+    margin-bottom: 15px; /* Espace sous la pastille */
+}
+
+.blog-post-card .read-more {
+    display: block;
+    text-align: right; /* Aligne le lien à droite dans la carte */
+    color: var(--accent-color); /* Couleur du lien "Lire l'article" */
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-top: auto; /* Pousse le lien vers le bas de la carte */
+    padding-top: 10px; /* Espace au-dessus du lien */
+}
+
+.blog-post-card .read-more:hover {
+    text-decoration: underline;
+    color: var(--primary-color); /* Couleur plus foncée au survol du lien */
+}
+
+/* Section des derniers articles */
+.blog-articles h2 {
+    text-align: center;
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-top: 60px; /* Espace au-dessus du titre */
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+
+/* --- Page Outils --- */
 .outil-interets {
     background-color: var(--white);
     padding: 2rem;
@@ -412,7 +520,7 @@ footer {
     color: var(--arctic-blue-dark);
 }
 
-/* Page Contact */
+/* --- Page Contact --- */
 #contact-form {
     background-color: var(--white);
     padding: 2rem;
@@ -494,6 +602,7 @@ footer {
     margin: 0;
 }
 
+/* --- Modale --- */
 #modal {
     position: fixed;
     top: 0;
@@ -542,7 +651,7 @@ footer {
 }
 
 
-/* Page Guides et Articles (Général) */
+/* --- Page Guides et Articles (Général pour les listes et contenu d'articles) --- */
 .page-intro {
     background-color: var(--arctic-blue-light);
     padding: 2rem 1.5rem;
@@ -563,16 +672,16 @@ footer {
     color: var(--text-color);
 }
 
-/* Listes d'articles/guides */
+/* Listes d'articles/guides (si vous avez une page blog-guides.html ou blog-actualites.html qui liste les articles) */
 .actus-liste,
-.guides-list { /* J'ai ajouté .guides-list pour la cohérence future */
+.guides-list {
     display: grid;
     gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Nouvelle grille pour ces listes */
 }
 
 .actus-liste .preview,
-.guides-list .preview,
-.guides-list .card {
+.guides-list .preview {
     background-color: var(--white);
     padding: 1.5rem;
     border-radius: var(--border-radius);
@@ -582,23 +691,20 @@ footer {
 }
 
 .actus-liste .preview:hover,
-.guides-list .preview:hover,
-.guides-list .card:hover {
+.guides-list .preview:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 .actus-liste .preview h2,
-.guides-list .preview h2,
-.guides-list .card h2 {
+.guides-list .preview h2 {
     font-size: 1.5rem;
     margin-top: 0;
     color: var(--arctic-blue-dark);
 }
 
 .actus-liste .preview p,
-.guides-list .preview p,
-.guides-list .card p {
+.guides-list .preview p {
     font-size: 1rem;
     color: var(--text-color);
     margin-bottom: 1rem;
@@ -668,60 +774,56 @@ footer {
     font-weight: 600;
 }
 
-/* Réinitialisation des styles inline pour laisser le CSS prendre le dessus */
-/* C'est important car les styles inline ont une priorité plus élevée */
-/* Ceci s'assure que même si des styles inline subsistaient, le CSS prendrait le dessus.
-   Cependant, l'objectif est de les retirer complètement du HTML. */
-#why-arctic,
-.contact-form-container,
-.guides-container,
-.outils-container {
-    max-width: 900px;
-    margin: 2rem auto !important;
-    padding: 2rem !important;
-    border-radius: var(--border-radius) !important;
-    box-shadow: var(--box-shadow) !important;
-    background-color: var(--white) !important;
-    color: var(--text-color) !important;
-    font-family: inherit !important;
+/* --- Styles pour les ancres et correctifs divers --- */
+/* Nouveaux styles pour le logo cliquable */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
 }
 
-/* Spécifique pour le main des pages qui avaient des styles inline */
-body > nav + main {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-/* Adapter les styles h1 des pages de contenu */
-body > nav + main h1 {
-    font-size: 2.2rem !important;
-    color: var(--arctic-blue-dark) !important;
-    margin-bottom: 1.5rem !important;
-    text-align: left !important;
-}
-
-/* Adapter les styles de grille des pages de contenu */
-body > nav + main > div {
-    display: grid !important;
-    gap: 1.5rem !important;
+.logo-link:hover .site-title-text {
+    color: var(--arctic-blue-medium);
 }
 
 /* Enlève les styles inline des ancres dans les cartes */
-.card a {
+.card a { /* Ceci s'applique aux cartes générales sur la page d'accueil */
     text-decoration: none !important;
     color: inherit !important;
     display: block !important;
 }
 
-/* Correction pour le footer des pages de contenu */
-footer p {
-    font-size: 0.9rem;
-    color: var(--white);
-    margin: 0;
+/* Correction pour les classes .card et .preview qui étaient parfois utilisées de manière interchangeable */
+/* Assurez-vous que .blog-links .card n'existe plus dans le HTML.
+    Si oui, cette règle ne devrait pas s'appliquer car .blog-post-card est plus spécifique */
+/* Pour info, le HTML que je vous ai donné utilise .blog-post-card pour les catégories aussi */
+.blog-links .card.disabled { /* Si vous réutilisez la classe card avec un état disabled */
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
 }
 
-/* Styles Responsives */
+.blog-links .card.disabled:hover {
+    transform: none;
+    box-shadow: var(--box-shadow);
+    background-color: var(--medium-gray);
+}
+
+
+/* --- Styles Responsives --- */
+@media (max-width: 992px) {
+    .articles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    .blog-post-card .post-thumbnail {
+        height: 180px;
+    }
+}
+
 @media (max-width: 768px) {
     .main-header {
         flex-direction: column;
@@ -754,6 +856,42 @@ footer p {
     .cta h2 {
         font-size: 1.8rem;
     }
+
+    /* Spécifique à la page blog sur mobile */
+    .blog-main-content h1 {
+        font-size: 2.2em;
+    }
+    .blog-main-content .intro {
+        font-size: 1em;
+    }
+    .articles-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile pour toutes les grilles d'articles/catégories */
+        gap: 20px;
+    }
+    .blog-post-card .post-thumbnail {
+        height: 160px;
+    }
+    .blog-post-card h2,
+    .blog-post-card h3 {
+        font-size: 1.2em;
+    }
+    .blog-post-card p {
+        font-size: 0.9em;
+    }
+
+    /* Ajustements pour les listes d'articles/guides sur mobile (blog-guides.html, blog-actualites.html) */
+    .actus-liste,
+    .guides-list {
+        grid-template-columns: 1fr;
+    }
+    .actus-liste .preview h2,
+    .guides-list .preview h2 {
+        font-size: 1.4rem;
+    }
+    .actus-liste .preview p,
+    .guides-list .preview p {
+        font-size: 0.9em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -773,10 +911,10 @@ footer p {
         padding: 0.6rem 1.2rem;
         font-size: 1rem;
     }
-    .card h2 {
+    .card h2 { /* S'applique aux cartes générales de la page d'accueil */
         font-size: 1.2rem;
     }
-    .card p {
+    .card p { /* S'applique aux cartes générales de la page d'accueil */
         font-size: 0.9rem;
     }
     .outil-interets input,
@@ -790,270 +928,5 @@ footer p {
     #contact-form button {
         padding: 0.7rem;
         font-size: 0.9rem;
-    }
-}
-
-/* --- Nouveaux styles pour le logo cliquable --- */
-.logo-link {
-    text-decoration: none; 
-    color: inherit; 
-    display: flex; 
-    align-items: center; 
-    padding: 0.5rem 0; 
-}
-
-.logo-link:hover .site-title-text {
-    color: var(--arctic-blue-medium); 
-}
-
-/* --- Blog Page Specific Styles --- */
-
-/* Main content area for the blog */
-.blog-main-content {
-    padding: 20px; /* Adjust as needed */
-    max-width: 1200px; /* Max width for content */
-    margin: 20px auto; /* Center the content */
-    display: flex; /* Use flexbox for overall layout */
-    flex-direction: column; /* Stack sections vertically */
-    gap: 40px; /* Space between sections */
-}
-
-/* Introduction section (h1, p.intro, blog-links) */
-.blog-main-content section:first-of-type {
-    text-align: center;
-}
-
-.blog-main-content h1 {
-    font-size: 2.8em; /* Larger title for the main page heading */
-    color: var(--primary-color); /* Assuming you have a primary color variable */
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.blog-main-content .intro {
-    font-size: 1.2em;
-    color: var(--text-color-light); /* Lighter text for intro */
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Category Cards (Guides, Actualités) */
-.blog-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px; /* Space between cards */
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-    margin-bottom: 50px;
-}
-
-.blog-links .card-link {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color */
-}
-
-.blog-links .card {
-    background-color: var(--card-background); /* Card background color */
-    border-radius: 10px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px; /* Fixed width for cards */
-    display: flex; /* Enable flexbox for vertical alignment */
-    flex-direction: column; /* Stack h2 and p vertically */
-    align-items: center; /* Center items horizontally */
-    min-height: 180px; /* Minimum height for cards */
-    justify-content: center; /* Center content vertically */
-    border: 1px solid var(--border-color); /* Light border */
-}
-
-.blog-links .card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.blog-links .card h2 {
-    font-size: 1.8em;
-    margin-top: 15px; /* Space between icon and text */
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--heading-color); /* Assuming a heading color variable */
-}
-
-.blog-links .card-icon {
-    width: 60px; /* Adjust icon size */
-    height: 60px;
-    margin-right: 10px; /* Space between icon and text */
-}
-
-/* Adjust SVG fill color for dark theme if necessary */
-@media (prefers-color-scheme: dark) {
-    .blog-links .card-icon path.st0 { /* Assuming st0 is the class for the main path in your SVG */
-        fill: var(--text-color); /* Change SVG icon color for dark mode */
-    }
-}
-
-
-/* Latest Articles Section */
-.blog-articles h2 {
-    text-align: center;
-    font-size: 2.2em;
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Space between articles */
-    justify-content: center; /* Center grid items if they don't fill the row */
-}
-
-.blog-post-card {
-    background-color: var(--card-background);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden; /* Ensures image corners are rounded */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-.blog-post-card .post-thumbnail {
-    width: 100%;
-    height: 200px; /* Fixed height for thumbnails */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    display: block; /* Remove extra space below image */
-}
-
-.blog-post-card .post-content {
-    padding: 20px;
-    flex-grow: 1; /* Allows content to take up remaining space */
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-post-card .post-category {
-    display: inline-block;
-    background-color: var(--primary-color-light); /* Lighter version of primary color */
-    color: var(--primary-color);
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.85em;
-    margin-bottom: 10px;
-}
-
-.blog-post-card h3 {
-    font-size: 1.5em;
-    color: var(--heading-color);
-    margin-top: 0;
-    margin-bottom: 10px;
-    line-height: 1.3;
-}
-
-.blog-post-card p {
-    font-size: 0.95em;
-    color: var(--text-color-light);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1; /* Allow paragraph to push 'read more' to bottom */
-}
-
-.blog-post-card .read-more {
-    display: inline-block;
-    color: var(--accent-color); /* Use an accent color for links */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    align-self: flex-start; /* Align link to the start */
-}
-
-.blog-post-card .read-more:hover {
-    color: var(--primary-color); /* Change color on hover */
-    text-decoration: underline;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .blog-main-content h1 {
-        font-size: 2.2em;
-    }
-
-    .blog-main-content .intro {
-        font-size: 1em;
-    }
-
-    .blog-links {
-        flex-direction: column; /* Stack cards vertically on small screens */
-        align-items: center;
-    }
-
-    .blog-links .card {
-        width: 80%; /* Make cards wider on small screens */
-        max-width: 300px; /* Limit max width */
-    }
-
-    .blog-articles h2 {
-        font-size: 1.8em;
-    }
-
-    .articles-grid {
-        grid-template-columns: 1fr; /* Single column layout on small screens */
-    }
-}
-
-/* Dark mode adjustments (if you have a dark mode toggle or media query) */
-@media (prefers-color-scheme: dark) {
-    .blog-main-content {
-        background-color: var(--dark-background-color);
-        color: var(--dark-text-color);
-    }
-
-    .blog-main-content h1,
-    .blog-articles h2,
-    .blog-links .card h2,
-    .blog-post-card h3 {
-        color: var(--dark-heading-color);
-    }
-
-    .blog-main-content .intro,
-    .blog-post-card p {
-        color: var(--dark-text-color-light);
-    }
-
-    .blog-links .card,
-    .blog-post-card {
-        background-color: var(--dark-card-background);
-        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--dark-border-color);
-    }
-
-    .blog-links .card:hover,
-    .blog-post-card:hover {
-        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.08);
-    }
-
-    .blog-post-card .post-category {
-        background-color: var(--dark-primary-color-light);
-        color: var(--dark-primary-color);
-    }
-
-    .blog-post-card .read-more {
-        color: var(--dark-accent-color);
-    }
-
-    .blog-post-card .read-more:hover {
-        color: var(--dark-primary-color);
     }
 }
