@@ -84,7 +84,21 @@
   </section>
 
   <footer>
-    <p>© 2025 Arctic Finance - Tous droits réservés</p>
-  </footer>
+    <p>&copy; <span id="current-year"></span> Arctic Finance - Tous droits réservés</p>
+</footer>
+
+<script>
+    // Obtenez l'élément du span où l'année doit être affichée
+    const yearSpan = document.getElementById('current-year');
+
+    // Obtenez l'année actuelle
+    const currentYear = new Date().getFullYear();
+
+    // Mettez à jour le contenu du span avec l'année actuelle
+    if (yearSpan) { // Vérifie si l'élément existe avant de le modifier
+        yearSpan.textContent = currentYear;
+    }
+</script>
+
 </body>
 </html>
