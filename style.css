@@ -117,11 +117,11 @@ p {
     gap: 0.7rem;
 }
 
-.site-logo {
-    height: 115px; /* Taille du logo */
-    width: auto;
-    border-radius: 50%; /* Si tu veux un effet rond */
+.site-logo { height: 60px; width: auto; }
+@media (max-width: 480px){
+  .site-logo { height: 35px; }
 }
+
 
 .site-title-text {
     font-size: 1.8rem;
